@@ -5,25 +5,27 @@
     <title>Test page</title>
     <style type="text/css">
       * { margin: 0; padding: 0; font: 16px/1.45em 'HelveticaNeueLT Com 45 Lt', 'Helvetica Neue Light', 'Helvetice Neue', Helvetica, Arial, sans-serif; }
-      html, body, #wrapper { height: 100%; }
       body { color: #000000; background-color: #ffffff; }
-      h1, p, ul { margin-bottom: 0.75em; }
+      h1, p, ul { margin-bottom: 12px; }
       b { font-weight: bold; }
       i { font-style: italic; }
       h1 { font-size: 28px; margin-bottom: 0.6em; text-align: left; font-weight: bold; }
-
-      #content { padding: 20px; height: 800px; }
+      #wrapper {
+        width: 960px;
+        padding: 20px;
+        margin: 0 auto;
+      }
     </style>
     <script src="jquery-1.8.1.js"></script>
     <script src="jquery.twoup.js"></script>
     <script>
       $(function() {
-        $("#content").twoup();
+        $("#wrapper").twoup("1px solid silver");
       });
     </script>
   </head>
   <body>
-    <div id="content" class="body_text" name="nineteen_eighty_four">
+    <div id="wrapper">
 <h1 id="heading_1_1984">1984</h1>
 <p>It was a bright cold day in April, and the clocks were striking thirteen. Winston Smith, his chin nuzzled into his breast in an effort to escape the vile wind, slipped quickly through the glass doors of Victory Mansions, though not quickly enough to prevent a swirl of gritty dust from entering along with him.</p>
 <p>The hallway smelt of boiled cabbage and old rag mats. At one end of it a coloured poster, too large for indoor display, had been tacked to the wall. It depicted simply an enormous face, more than a metre wide: the face of a man of about forty-five, with a heavy black moustache and ruggedly handsome features. Winston made for the stairs. It was no use trying the lift. Even at the best of times it was seldom working, and at present the electric current was cut off during daylight hours. It was part of the economy drive in preparation for Hate Week. The flat was seven flights up, and Winston, who was thirty-nine and had a varicose ulcer above his right ankle, went slowly, resting several times on the way. On each landing, opposite the lift-shaft, the poster with the enormous face gazed from the wall. It was one of those pictures which are so contrived that the eyes follow you about when you move. BIG BROTHER IS WATCHING YOU, the caption beneath it ran.</p>
@@ -110,5 +112,6 @@
 <p>Down in the street the wind flapped the torn poster to and fro, and the word INGSOC fitfully appeared and vanished. Ingsoc. The sacred principles of Ingsoc. Newspeak, doublethink, the mutability of the past. He felt as though he were wandering in the forests of the sea bottom, lost in a monstrous world where he himself was the monster. He was alone. The past was dead, the future was unimaginable. What certainty had he that a single human creature now living was on his side? And what way of knowing that the dominion of the Party would not endure FOR EVER? Like an answer, the three slogans on the white face of the Ministry of Truth came back to him:</p>
 <p>WAR IS PEACE FREEDOM IS SLAVERY IGNORANCE IS STRENGTH</p>
 <p>He took a twenty-five cent piece out of his pocket. There, too, in tiny clear lettering, the same slogans were inscribed, and on the other face of the coin the head of Big Brother. Even from the coin the eyes pursued you. On coins, on stamps, on the covers of books, on banners, on posters, and on the wrappings of a cigarette packet--everywhere. Always the eyes watching you and the voice enveloping you. Asleep or awake, working or eating, indoors or out of doors, in the bath or in bed--no escape. Nothing was your own except the few cubic centimetres inside your skull.</p>
+    </div>
   </body>
 </html>

@@ -1,32 +1,29 @@
 (function($) {
-  $.fn.twoup = function(options) {
+  $.fn.twoup = function(column_rule) {
     var content_width = 0;
     var scroll_width = 0;
 
-    var content = this;
+    var content = $("<div></div>").css({ "-webkit-column-rule": column_rule, "-moz-column-rule": column_rule, "column-rule": column_rule });
     var slider = $("<div></div>");
-    var padding = $("<div></div>").css("overflow", "hidden");
+    var padding = $(this).css({ "overflow": "hidden" });
 
-    content.before(padding);
+    var children = padding.children().detach();
     padding.append(slider);
-    slider.append(content.detach());
+    slider.append(content);
+    content.append(children);
 
-    var box_styles = ["width", "height", "padding-top", "padding-right", "padding-bottom", "padding-left", "margin-top",
-     "margin-right", "margin-bottom", "margin-left", "border-top", "border-right", "border-bottom", "border-left"];
-
-    $.each(box_styles, function(i, s) {
-      padding.css(s, content.css(s));
-      content.css(s, 0);
-    });
+    //at the moment, only webkit has proper support for css3 columns.
+    //if the window width is narrower than 1000px, then the content column width would be too narrow
+    if(!$.browser.webkit || $(window).width() < 1000) return;
 
     function twoup() {
-      var inner_width = padding.width();
-      var inner_height = padding.height();
-      var padding_length = parseInt(padding.css("padding"));
-      var column_gap_width = (padding_length * 2);
+      var column_gap_width = (parseInt(padding.css("padding")) * 2) + parseInt(content.css("column-rule-width"));
+      var inner_width = $(window).width() - column_gap_width;
+      var inner_height = $(window).height() - column_gap_width;
       var column_width = Math.floor((inner_width - column_gap_width) / 2);
       scroll_width = (column_width + column_gap_width) * 2;
 
+      padding.css({ "width": inner_width + "px", "height": inner_height + "px" });
       content.css({ "width": inner_width + "px", "height": inner_height + "px", "-webkit-column-width": column_width + "px",
        "-moz-column-width": column_width + "px", "column-width": column_width + "px", "-webkit-column-gap": column_gap_width + "px",
        "-moz-column-gap": column_gap_width + "px", "column-gap": column_gap_width + "px" });
