@@ -12,14 +12,14 @@
     slider.append(content);
     content.append(children);
 
-    //at the moment, only webkit has proper support for css3 columns.
+    //at the moment, only WebKit and MSIE10 has proper support for css3 columns AND getting the right width for a column element with overflow
     //if the window width is narrower than 1000px, then the content column width would be too narrow
-    if(!$.browser.webkit || $(window).width() < 1000) return;
+    if((!$.browser.webkit && (!$.browser.msie || $.browser.version < 10)) || ($(window).width() < 1000)) return;
 
-    function twoup() {
-      var column_gap_width = (parseInt(padding.css("padding")) * 2) + parseInt(content.css("column-rule-width"));
-      var inner_width = $(window).width() - column_gap_width;
-      var inner_height = $(window).height() - column_gap_width;
+    $(window).resize(function() {
+      var column_gap_width = (parseInt(padding.css("padding-top")) * 2) + parseInt(content.css("column-rule-width"));
+      var inner_width = window.innerWidth - column_gap_width;
+      var inner_height = window.innerHeight - column_gap_width;
       var column_width = Math.floor((inner_width - column_gap_width) / 2);
       scroll_width = (column_width + column_gap_width) * 2;
 
@@ -28,10 +28,7 @@
        "-moz-column-width": column_width + "px", "column-width": column_width + "px", "-webkit-column-gap": column_gap_width + "px",
        "-moz-column-gap": column_gap_width + "px", "column-gap": column_gap_width + "px" });
       content_width = content[0].scrollWidth;
-    };
-
-    $(window).resize(twoup);
-    twoup();
+    }).resize();
 
     function get_index() {
       var index = parseInt(location.hash.substr(1)); 
