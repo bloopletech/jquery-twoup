@@ -17,7 +17,7 @@
     if((!$.browser.webkit && (!$.browser.msie || $.browser.version < 10)) || ($(window).width() < 1000)) return;
 
     $(window).resize(function() {
-      var column_gap_width = (parseInt(padding.css("padding-top")) * 2) + parseInt(content.css("column-rule-width"));
+      var column_gap_width = (parseInt(padding.css("padding-top")) * 2) + parseInt(content.css("-webkit-column-rule-width") || content.css("column-rule-width"));
       var inner_width = window.innerWidth - column_gap_width;
       var inner_height = window.innerHeight - column_gap_width;
       var column_width = Math.floor((inner_width - column_gap_width) / 2);
